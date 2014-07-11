@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@section scripts
+{
+    <script src="~/Scripts/knockout-3.1.0.js"></script>
+    <script src="~/Scripts/knockout.mapping-latest.js"></script>
+    <script src="~/Scripts/lodash.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.1.0.js"></script>
+    <script src="~/SignalR/Hubs"></script>
+    <script src="~/js/app.js"></script>
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h1>Griffbook 2000</h1>
+    </div>
+</div>
+<div class="well">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Post New Status Update</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <textarea rows="5" cols="100" data-bind="value: newStatus"
+                      style="max-width: 500px;"></textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <button id="btnSend" data-bind="click: onAddStatus ">Send</button>
+            <button id="btnClear" data-bind="click: onClearStatus">Clear</button>
+        </div>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <h3>Current Statuses</h3>
+    </div>
+</div>
+<div class="row">
+    <div data-bind="foreach: statuses">
+        <div class="col-md-4 well">
+            <blockquote data-bind="text: StatusText"></blockquote>
+            <p><button data-bind="click: $parent.like"><i class="glyphicon glyphicon-thumbs-up"></i></button>&nbsp; <span data-bind="text: Liked().length"></span> people like this </p>
+        </div>
+    </div>
+</div>
